@@ -25,7 +25,10 @@ This repo contains the source code for a Lightning component used for the Denver
 <br/>// OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 <br/>// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.**
 
-This component shows the ability to create 
+This component shows the ability to:
+* Provide simple tab-based form that can be used from mobile devices to collect contact details (i.e. reason for contact, date/time, location, person details, actions taken, notes, etc...). See example screenshots below.
+* Provides example of ESRI address lookup to determine police distrct/precinct.
+* Utilizes the CarQuery API service to lookup vehicle makes and models based on year. Details of this service can be found [here](http://www.carqueryapi.com/).
 
 <a href="https://githubsfdeploy.herokuapp.com">
   <img alt="Deploy to Salesforce"
