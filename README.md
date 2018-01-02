@@ -2,7 +2,7 @@
 
 This repo contains the source code for a Lightning component used for the Denver PD Contact Card demo. This source code is for demo purposes only and is covered by the following copyright disclaimer.
 
-<b>Copyright 2016, Sales Engineering, Salesforce.com Inc.
+<i><b>Copyright 2016, Sales Engineering, Salesforce.com Inc.
 <br/>All rights reserved.
 <br/>
 <br/>Redistribution and use in source and binary forms, with or without modification, 
@@ -23,7 +23,7 @@ This repo contains the source code for a Lightning component used for the Denver
 <br/>SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 <br/>CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 <br/>OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-<br/>OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</b>
+<br/>OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</b></i>
 
 #### This component shows the ability to:
 * Provide simple tab-based form that can be used from mobile devices to collect contact details (i.e. reason for contact, date/time, location, person details, actions taken, notes, etc...). See example screenshots below.
@@ -43,7 +43,6 @@ This repo contains the source code for a Lightning component used for the Denver
 * [Trailhead: Build Reusable Lightning Components](https://trailhead.salesforce.com/projects/build-reusable-lightning-components)
 * [Trailhead: Create a Lightning Component to Display the Weather](https://trailhead.salesforce.com/en/projects/incorporate-ibm-weather-company-data/steps/lightning-component-display-weather)
 * [Trailhead: Build an Account Geolocation App](https://trailhead.salesforce.com/projects/account-geolocation-app)
-* []()
 
 <a href="https://githubsfdeploy.herokuapp.com">
   <img alt="Deploy to Salesforce"
