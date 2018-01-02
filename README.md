@@ -3,7 +3,7 @@
 This repo contains the source code for a Lightning component used for the Denver PD Contact Card demo. This source code is for demo purposes only and is covered by the following copyright disclaimer.
 
 `// Copyright 2016, Sales Engineering, Salesforce.com Inc.
-// All rights reserved.
+<br/>// All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
