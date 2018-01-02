@@ -25,14 +25,14 @@ This repo contains the source code for a Lightning component used for the Denver
 <br/>OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 <br/>OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.**
 
-###This component shows the ability to:
+### This component shows the ability to:
 * Provide simple tab-based form that can be used from mobile devices to collect contact details (i.e. reason for contact, date/time, location, person details, actions taken, notes, etc...). See example screenshots below.
 * Provides example of ESRI address lookup to determine police distrct/precinct.
 * Utilizes the CarQuery API service to lookup vehicle makes and models based on year. Details of this service can be found [here](http://www.carqueryapi.com/).
 
 ![alt text](https://github.com/thedges/PSPoliceContactCard/blob/master/PSPoliceContactCard.png "Sample Image")
 
-###The primary source code files to review are:
+### The primary source code files to review are:
 * <b>PSPoliceContactCard Lightning Component</b> - source code of the main component used in the demo.
 * <b>PSCarQueryUtils Apex Class</b> - source code for querying the CarQuery API service to get vehicle models and makes for a selected year
 * <b>PSDenverDistrictUtils Apex Class</b> - source code for querying ESRI by providing latitude/longitude and retrieving a district number based on ESRI layer definition
