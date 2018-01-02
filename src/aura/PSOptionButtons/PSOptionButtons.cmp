@@ -1,0 +1,20 @@
+<aura:component >   
+    <aura:attribute name="id" type="String"/>
+    <aura:attribute name="name" type="String"/>
+    <aura:attribute name="options" type="List"/>
+    <aura:attribute name="value" type="String"/>
+    <aura:attribute name="label" type="String" />
+    <aura:attribute name="type" type="String"/>
+    <aura:attribute name="required" type="String" default="false"/>
+    
+        <lightning:radioGroup aura:id="{!v.id}"
+                              name="{!v.name}"
+                              label="{!v.label}"
+                              type="{!v.type}"
+                              options="{!v.options}"
+                              value="{!v.value}"
+                              onchange="{!c.handleChange}"
+                              required="{!v.required}" />
+        
+
+</aura:component>

@@ -1,0 +1,351 @@
+<aura:component controller="PSPoliceContactCardController" implements="force:hasRecordId,force:appHostable,forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes,lightning:actionOverride">
+    <aura:attribute name="vehPursuit" type="String" default="--None--" />
+    <aura:attribute name="testOpt" type="String" default="--None--" />
+
+    <aura:attribute name="incidentId" type="String" default="" />
+
+    <aura:attribute name="incident" type="Incident__c" />
+    <aura:attribute name="incidentContacts" type="List" />
+    <aura:attribute name="incidentFiles" type="List" />
+    <aura:attribute name="incidentContactSelection" type="Integer" default="0" />
+
+    <aura:attribute name="currLat" type="String" />
+    <aura:attribute name="currLng" type="String" />
+    <aura:attribute name="currPos" type="Boolean" default="false" />
+
+    <aura:attribute name="carYears" type="List" />
+    <aura:attribute name="carMakes" type="List" />
+    <aura:attribute name="carModels" type="List" />
+    <aura:attribute name="vehYearSel" type="String" access="private" />
+
+    <aura:attribute name="badgeNumber" type="String" access="private" />
+    <aura:attribute name="errMsg" type="List" access="private" />
+
+    <aura:attribute name="incidentPicklists" type="Object" />
+    <aura:attribute name="incidentContactPicklists" type="Object" />
+
+    <aura:attribute name="options" type="List" default="[
+                                                        {'label': 'Yes', 'value': 'Yes'},
+                                                        {'label': 'No', 'value': 'No'}
+                                                        ]" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.vehPursuit}" action="{!c.vehPursuitChange}" />
+    <aura:handler name="change" value="{!v.currPos}" action="{!c.geoChange}" />
+    <aura:handler name="change" value="{!v.incident}" action="{!c.incidentChange}" />
+
+    <div class="container">
+        <aura:if isTrue="{!v.errMsg.length > 0}">
+            <div class="errorMsg" onclick="{!c.clearError}">
+                <div class="slds-p-left_medium">
+                    <aura:iteration items="{!v.errMsg}" var="m">
+                        {!m}
+                        <br/>
+                    </aura:iteration>
+                </div>
+            </div>
+        </aura:if>
+        <lightning:tabset >
+            <lightning:tab >
+                <aura:set attribute="label">
+                    Incident
+                    <!-- <lightning:icon iconName="utility:connected_apps" /> -->
+                </aura:set>
+
+                <lightning:accordion >
+
+                    <lightning:accordionSection label="Reason" name="Reason">
+                        <div class="slds-grid slds-wrap slds-grid--pull-padded slds-p-left_medium slds-form_horizontal">
+                            <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                                <lightning:select name="typeSelect" label="Reason for contact" value="{!v.incident.Reason__c}">
+                                    <aura:iteration items="{!v.incidentPicklists.Reason__c}" var="pl">
+                                        <option text="{!pl.label}" value="{!pl.value}" selected="{!v.incident.Reason__c == pl.value}" />
+                                    </aura:iteration>
+                                </lightning:select>
+                            </div>
+                            <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2">
+                                <aura:if isTrue="{!v.incident.Reason__c == 'Other'}">
+                                    <lightning:input label="Other description" name="ReasonOther" value="{!v.incident.Reason_Narrative__c}" />
+                                </aura:if>
+                            </div>
+                        </div>
+                    </lightning:accordionSection>
+                    <lightning:accordionSection label="Contact" name="Contact">
+                        <div class="slds-grid slds-wrap slds-grid--pull-padded slds-p-left_medium slds-form_horizontal">
+                            <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                                <lightning:input label="Date/time" type="datetime-local" name="contactDttm" value="{!v.incident.Incident_Date_Time__c}" />
+                            </div>
+                            <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                                <lightning:select name="district" label="District" value="{!v.incident.District__c}">
+                                    <aura:iteration items="{!v.incidentPicklists.District__c}" var="pl">
+                                        <option text="{!pl.label}" value="{!pl.value}" selected="{!v.incident.District__c == pl.value}" />
+                                    </aura:iteration>
+                                </lightning:select>
+                            </div>
+                            <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                                <lightning:input label="Address" name="contactAddress" value="{!v.incident.Address__c}" onblur="{!c.onAddressChange}" />
+                            </div>
+                            <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                                <lightning:select name="contactType" label="Contact type" value="{!v.incident.Contact_Type__c}">
+                                    <aura:iteration items="{!v.incidentPicklists.Contact_Type__c}" var="pl">
+                                        <option text="{!pl.label}" value="{!pl.value}" selected="{!v.incident.Contact_Type__c == pl.value}" />
+                                    </aura:iteration>
+                                </lightning:select>
+                            </div>
+                            <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2">
+                                <lightning:select name="contactDuration" label="Duration of contact" value="{!v.incident.Duration_of_Contact__c}">
+                                    <aura:iteration items="{!v.incidentPicklists.Duration_of_Contact__c}" var="pl">
+                                        <option text="{!pl.label}" value="{!pl.value}" selected="{!v.incident.Duration_of_Contact__c == pl.value}" />
+                                    </aura:iteration>
+                                </lightning:select>
+                            </div>
+                        </div>
+                    </lightning:accordionSection>
+                    <lightning:accordionSection label="Misc" name="Misc">
+                        <div class="slds-x-small-show-only">
+                            <div class="slds-grid slds-wrap slds-grid--pull-padded slds-p-left_medium slds-form_horizontal">
+                                <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                                    <lightning:radioGroup aura:id="vehPursuitM" name="vehPursuitM" label="Vehicle Pursuit" type="button" options="{!v.options}" value="{!v.incident.Vehicle_Pursuit__c}" required="false" class="remove-required" />
+                                </div>
+                                <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                                    <lightning:radioGroup aura:id="footPursuitM" name="footPursuitM" label="Foot Pursuit" type="button" options="{!v.options}" value="{!v.incident.Foot_Pursuit__c}" required="false" class="remove-required" />
+                                </div>
+                                <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                                    <lightning:radioGroup aura:id="seizeContrabandM" name="seizeContrabandM" label="Seize Contraband" type="button" options="{!v.options}" value="{!v.incident.Siezed_Contraband__c}" required="false" class="remove-required" />
+                                </div>
+                                <aura:if isTrue="{!v.incident.Siezed_Contraband__c[0] == 'Yes' || v.incident.Siezed_Contraband__c == 'Yes'}">
+                                    <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2">
+                                        <lightning:select name="typeContraband" label="Type of contraband" value="{!v.incident.Type_of_Contraband__c}">
+                                            <aura:iteration items="{!v.incidentPicklists.Type_of_Contraband__c}" var="pl">
+                                                <option text="{!pl.label}" value="{!pl.value}" selected="{!v.incident.Type_of_Contraband__c == pl.value}" />
+                                            </aura:iteration>
+                                        </lightning:select>
+                                    </div>
+                                </aura:if>
+                                <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                                    <lightning:select name="numSubjects" label="# of Subjects" value="{!v.incident.Num_of_Subjects__c}" onchange="{!c.onNumSubjects}">
+                                        <aura:iteration items="{!v.incidentPicklists.Num_of_Subjects__c}" var="pl">
+                                            <option text="{!pl.label}" value="{!pl.value}" selected="{!v.incident.Num_of_Subjects__c == pl.value}" />
+                                        </aura:iteration>
+                                    </lightning:select>
+                                </div>
+                                <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                                    <lightning:select name="numOfficers" label="# of Officers involved" value="{!v.incident.Num_Officers_Involved__c}">
+                                        <aura:iteration items="{!v.incidentPicklists.Num_Officers_Involved__c}" var="pl">
+                                            <option text="{!pl.label}" value="{!pl.value}" selected="{!v.incident.Num_Officers_Involved__c == pl.value}" />
+                                        </aura:iteration>
+                                    </lightning:select>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="slds-medium-show">
+                            <div class="slds-grid slds-wrap slds-grid--pull-padded slds-p-left_medium slds-form_horizontal">
+                                <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                                    <lightning:radioGroup aura:id="vehPursuit" name="vehPursuit" label="Vehicle Pursuit" type="button" options="{!v.options}" value="{!v.incident.Vehicle_Pursuit__c}" required="false" class="remove-required"/>
+                                </div>
+                                <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                                    <lightning:select name="numSubjects" label="# of Subjects" value="{!v.incident.Num_of_Subjects__c}" onchange="{!c.onNumSubjects}">
+                                        <aura:iteration items="{!v.incidentPicklists.Num_of_Subjects__c}" var="pl">
+                                            <option text="{!pl.label}" value="{!pl.value}" selected="{!v.incident.Num_of_Subjects__c == pl.value}" />
+                                        </aura:iteration>
+                                    </lightning:select>
+                                </div>
+                                <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                                    <lightning:radioGroup aura:id="footPursuit" name="footPursuit" label="Foot Pursuit" type="button" options="{!v.options}" value="{!v.incident.Foot_Pursuit__c}" required="false"  class="remove-required"/>
+                                </div>
+                                <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                                    <lightning:select name="numOfficers" label="# of Officers involved" value="{!v.incident.Num_Officers_Involved__c}">
+                                        <aura:iteration items="{!v.incidentPicklists.Num_Officers_Involved__c}" var="pl">
+                                            <option text="{!pl.label}" value="{!pl.value}" selected="{!v.incident.Num_Officers_Involved__c == pl.value}" />
+                                        </aura:iteration>
+                                    </lightning:select>
+                                </div>
+                                <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                                    <lightning:radioGroup aura:id="seizeContraband" name="seizeContraband" label="Seize Contraband" type="button" options="{!v.options}" value="{!v.incident.Siezed_Contraband__c}" required="false" class="remove-required"/>
+                                </div>
+                                <aura:if isTrue="{!v.incident.Siezed_Contraband__c[0] == 'Yes' || v.incident.Siezed_Contraband__c == 'Yes'}">
+                                    <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2">
+                                        <lightning:select name="typeContraband" label="Type of contraband" value="{!v.incident.Type_of_Contraband__c}">
+                                            <aura:iteration items="{!v.incidentPicklists.Type_of_Contraband__c}" var="pl">
+                                                <option text="{!pl.label}" value="{!pl.value}" selected="{!v.incident.Type_of_Contraband__c == pl.value}" />
+                                            </aura:iteration>
+                                        </lightning:select>
+                                    </div>
+                                </aura:if>
+                            </div>
+                        </div>
+                    </lightning:accordionSection>
+                </lightning:accordion>
+
+            </lightning:tab>
+            <lightning:tab >
+                <aura:set attribute="label">
+                    Persons
+                </aura:set>
+
+                <div class="slds-p-left_medium slds-p-bottom_medium">
+                    <div class="slds-grid slds-wrap slds-grid--pull-padded">
+                        <lightning:buttonGroup >
+                            <lightning:buttonIcon iconName="utility:adduser" variant="bare" alternativeText="Settings" iconClass="dark" onclick="{! c.addPerson }" size="large" />&nbsp;&nbsp;
+                            <lightning:buttonIcon iconName="utility:resource_absence" variant="bare" alternativeText="Settings" iconClass="dark" onclick="{! c.deletePerson }" size="large" />
+                        </lightning:buttonGroup>
+                        &nbsp;&nbsp;
+
+                        <!-- Area for person select buttons -->
+
+                        <aura:iteration items="{!v.incidentContacts}" var="pl" indexVar="index">
+                            <div class="slds-p-bottom_x-small slds-p-right_x-small">
+                                <lightning:button variant="{!index == v.incidentContactSelection  ? 'brand' : 'neutral'}" label="{!'Person ' + pl.Person_Num__c}" value="{!index}" onclick="{! c.changePerson }" />
+                            </div>
+                        </aura:iteration>
+                    </div>
+                </div>
+
+                <!-- Area for person details -->
+                <aura:iteration items="{!v.incidentContacts}" var="item" indexVar="index">
+                    <aura:if isTrue="{! index == v.incidentContactSelection }">
+                        <div class="slds-grid slds-wrap slds-grid--pull-padded slds-p-left_medium slds-form_horizontal">
+                            <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                                <lightning:select name="ageGroup" label="Age Group" value="{!item.Age_Group__c}">
+                                    <aura:iteration items="{!v.incidentContactPicklists.Age_Group__c}" var="pl">
+                                        <option text="{!pl.label}" value="{!pl.value}" selected="{!item.Age_Group__c == pl.value}" />
+                                    </aura:iteration>
+                                </lightning:select>
+                            </div>
+                            <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                                <lightning:select name="race" label="Race/Ethnicity" value="{!item.Race_Ethnicity__c}">
+                                    <aura:iteration items="{!v.incidentContactPicklists.Race_Ethnicity__c}" var="pl">
+                                        <option text="{!pl.label}" value="{!pl.value}" selected="{!item.Race_Ethnicity__c == pl.value}" />
+                                    </aura:iteration>
+                                </lightning:select>
+                            </div>
+                            <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                                <lightning:select name="gender" label="Gender" value="{!item.Gender__c}">
+                                    <aura:iteration items="{!v.incidentContactPicklists.Gender__c}" var="pl">
+                                        <option text="{!pl.label}" value="{!pl.value}" selected="{!item.Gender__c == pl.value}" />
+                                    </aura:iteration>
+                                </lightning:select>
+                            </div>
+                            <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                                <lightning:select name="gangAffil" label="Suspected or Confirmed Gang Affiliation" value="{!item.Gang_Affiliation__c}">
+                                    <aura:iteration items="{!v.incidentContactPicklists.Gang_Affiliation__c}" var="pl">
+                                        <option text="{!pl.label}" value="{!pl.value}" selected="{!item.Gang_Affiliation__c == pl.value}" />
+                                    </aura:iteration>
+                                </lightning:select>
+                            </div>
+                            <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                                <lightning:select name="vehYear" label="Vehicle Year" value="{!item.Vehicle_Year__c}" onchange="{!c.onVehicleYear}">
+                                    <aura:iteration items="{!v.carYears}" var="pl">
+                                        <option text="{!pl}" value="{!pl}" selected="{!item.Vehicle_Year__c == pl}" />
+                                    </aura:iteration>
+                                </lightning:select>
+                            </div>
+                            <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                                <lightning:select name="vehMake" label="Vehicle Make" value="{!item.Vehicle_Make__c}" onchange="{!c.onVehicleMake}">
+                                    <aura:iteration items="{!v.carMakes}" var="pl">
+                                        <option text="{!pl}" value="{!pl}" selected="{!item.Vehicle_Make__c == pl}" />
+                                    </aura:iteration>
+                                </lightning:select>
+                            </div>
+                            <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                                <lightning:select name="vehModel" label="Vehicle Model" value="{!item.Vehicle_Model__c}">
+                                    <aura:iteration items="{!v.carModels}" var="pl">
+                                        <option text="{!pl}" value="{!pl}" selected="{!item.Vehicle_Model__c == pl}" />
+                                    </aura:iteration>
+                                </lightning:select>
+                            </div>
+                        </div>
+                    </aura:if>
+                </aura:iteration>
+
+                <!-- Area for person action buttons -->
+
+            </lightning:tab>
+            <lightning:tab >
+                <aura:set attribute="label">
+                    Actions
+                </aura:set>
+                <div class="slds-grid slds-wrap slds-grid--pull-padded slds-p-left_medium slds-form_horizontal">
+                    <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-1 slds-medium-size--1-of-1 slds-p-bottom_x-small">
+                        <lightning:radioGroup aura:id="patDownConducted" name="patDownConducted" label="Pat down conducted?" type="button" options="{!v.options}" value="{!v.incident.Pat_Down__c}" required="false" class="actions remove-required" />
+                    </div>
+
+                    <aura:if isTrue="{!v.incident.Pat_Down__c[0] == 'Yes' || v.incident.Pat_Down__c == 'Yes'}">
+                        <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                            <lightning:select name="patDownBasis" label="Basis for pat down" value="{!v.incident.Basis_for_Pat_Down__c}">
+                                <aura:iteration items="{!v.incidentPicklists.Basis_for_Pat_Down__c}" var="pl">
+                                    <option value="{!pl.value}">{!pl.label}</option>
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>
+
+                        <aura:if isTrue="{!or(and(v.incident.Basis_for_Pat_Down__c == 'Other (describe)', v.incident.Pat_Down__c[0] == 'Yes'), and(v.incident.Basis_for_Pat_Down__c == 'Other (describe)', v.incident.Pat_Down__c == 'Yes'))}">
+                            <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                                <lightning:input label="Pat down description" name="PatDownOther" value="{!v.incident.Basis_for_Pat_Down_Narrative__c}" class="actions" />
+                            </div>
+                        </aura:if>
+                    </aura:if>
+
+                    <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-1 slds-medium-size--1-of-1 slds-p-bottom_x-small">
+                        <lightning:radioGroup aura:id="fullSearchConducted" name="fullSearchConducted" label="Full search conducted?" type="button" options="{!v.options}" value="{!v.incident.Full_Search__c}" required="false" class="actions remove-required" />
+                    </div>
+                    <aura:if isTrue="{!v.incident.Full_Search__c[0] == 'Yes' || v.incident.Full_Search__c == 'Yes'}">
+                        <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                            <lightning:select name="fullSeachBasis" label="Basis for full search" value="{!v.incident.Basis_for_Full_Search__c}" class="actions">
+                                <aura:iteration items="{!v.incidentPicklists.Basis_for_Full_Search__c}" var="pl">
+                                    <option value="{!pl.value}">{!pl.label}</option>
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>
+
+                        <aura:if isTrue="{!or(and(v.incident.Basis_for_Full_Search__c == 'Other (describe)', v.incident.Full_Search__c[0] == 'Yes'), and(v.incident.Basis_for_Full_Search__c == 'Other (describe)', v.incident.Full_Search__c == 'Yes'))}">
+                            <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+
+                                <lightning:input label="Full search description" name="FullSearchOther" value="{!v.incident.Basis_for_Full_Search_Narrative__c}" />
+                            </div>
+                        </aura:if>
+                    </aura:if>
+
+                    <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-1 slds-medium-size--1-of-1 slds-p-bottom_x-small">
+                        <lightning:radioGroup aura:id="issuedSummons" name="issuedSummons" label="Issued summons" type="button" options="{!v.options}" value="{!v.incident.Issued_Summons__c}" required="false" class="actions remove-required" />
+                    </div>
+                    <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-1 slds-medium-size--1-of-1 sl">
+                        <lightning:radioGroup aura:id="arrestedSuspects" name="arrestedSuspects" label="Arrested suspect(s)" type="button" options="{!v.options}" value="{!v.incident.Arrested_suspect_s__c}" required="false" class="actions remove-required" />
+                    </div>
+                </div>
+            </lightning:tab>
+            <lightning:tab >
+                <aura:set attribute="label">
+                    Notes
+                </aura:set>
+                <div class="slds-grid slds-wrap slds-grid--pull-padded">
+                    <div class="slds-col--padded-medium slds-size--1-of-2 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                        <lightning:input label="Badge Number" name="BadgeNumber" value="{!v.incident.Officer_Badge_Number__c}" class="clear-width"/>
+                    </div>
+                    <div class="slds-col--padded-medium slds-size--1-of-2 slds-small-size--1-of-2 slds-medium-size--1-of-2 slds-p-bottom_x-small">
+                        <lightning:radioGroup aura:id="inUniform" name="inUniform" class="slds-p-bottom_small remove-required" label="Officer In Uniform" type="button" options="{!v.options}" value="{!v.incident.Officer_in_Uniform__c}" required="false" />
+                    </div>
+                </div>
+
+                <lightning:textarea class="slds-p-bottom_x-small" name="observNotes" label="Observations" value="{!v.incident.Observation_Notes__c}" maxlength="2000" />
+
+                <aura:if isTrue="{!v.recordId != null}">
+                    <lightning:fileUpload label="Images" multiple="true" accept=".jpg, .png, .gif" recordId="{!v.incident.Id}" onuploadfinished="{!c.handleUploadFinished}" />
+                </aura:if>
+                <div class="slds-grid slds-wrap slds-grid--pull-padded slds-p-left_medium ">
+
+                    <aura:iteration items="{!v.incidentFiles}" var="f">
+                        <div class="slds-col--padded-medium slds-size--1-of-1 slds-small-size--1-of-3 slds-medium-size--1-of-3 slds-p-bottom_x-small">
+                            <lightning:fileCard fileId="{!f}" />
+                        </div>
+                    </aura:iteration>
+                </div>
+            </lightning:tab>
+        </lightning:tabset>
+
+        <lightning:buttonGroup >
+            <lightning:button variant="brand" label="Save" onclick="{! c.saveIncident }" />
+        </lightning:buttonGroup>
+    </div>
+</aura:component>
