@@ -33,9 +33,17 @@ This repo contains the source code for a Lightning component used for the Denver
 ![alt text](https://github.com/thedges/PSPoliceContactCard/blob/master/PSPoliceContactCard.png "Sample Image")
 
 #### The primary source code files to review are:
-* <b>PSPoliceContactCard Lightning Component</b> - source code of the main component used in the demo.
+* <b>PSPoliceContactCard Lightning Component</b> - source code of the main component used in the demo. Contains the main markup and logic for creating the tabs, field inputs, persion add/subtract control logic, etc...
 * <b>PSCarQueryUtils Apex Class</b> - source code for querying the CarQuery API service to get vehicle models and makes for a selected year
 * <b>PSDenverDistrictUtils Apex Class</b> - source code for querying ESRI by providing latitude/longitude and retrieving a district number based on ESRI layer definition
+
+#### It is recommended that anyone utilizing this sample code to be knowledgeable of Salesforce Lightning Component development. Some good resources are the following:
+* [Salesforce Lightning Component Developer Guide](https://resources.docs.salesforce.com/210/latest/en-us/sfdc/pdf/lightning.pdf)
+* [Trailhead: Create a HelloWorldLightning Component](https://trailhead.salesforce.com/projects/workshop-lightning-programmatic/steps/programmatic-step-4)
+* [Trailhead: Build Reusable Lightning Components](https://trailhead.salesforce.com/projects/build-reusable-lightning-components)
+* [Trailhead: Create a Lightning Component to Display the Weather](https://trailhead.salesforce.com/en/projects/incorporate-ibm-weather-company-data/steps/lightning-component-display-weather)
+* [Trailhead: Build an Account Geolocation App](https://trailhead.salesforce.com/projects/account-geolocation-app)
+* []()
 
 <a href="https://githubsfdeploy.herokuapp.com">
   <img alt="Deploy to Salesforce"
