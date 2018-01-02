@@ -5,8 +5,7 @@ This repo contains the source code for a Lightning component used for the Denver
 **Copyright 2016, Sales Engineering, Salesforce.com Inc.
 <br/>All rights reserved.
 <br/>
-<br/>Redistribution and use in source and binary forms, with or without
-<br/>modification, are permitted provided that the following conditions are met:
+<br/>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 <br/>
 <br/>- Recipient acknowledges this source code is for sample purposes only and 
 <br/>  my not be developed according to general coding best practices. 
