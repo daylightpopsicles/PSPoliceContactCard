@@ -40,7 +40,7 @@ This repo contains the source code for a Lightning component used for the Denver
 #### It is recommended that anyone utilizing this sample code to be knowledgeable of Salesforce Lightning Component development. Some good resources are the following:
 * [Salesforce Lightning Component Developer Guide](https://resources.docs.salesforce.com/210/latest/en-us/sfdc/pdf/lightning.pdf)
 * [Salesforce Lightning Component Reference](https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/aura_compref.htm)
-* [Saleforce Lightning Design System](https://www.lightningdesignsystem.com/)
+* [Salesforce Lightning Design System](https://www.lightningdesignsystem.com/)
 * [Trailhead: Create a HelloWorldLightning Component](https://trailhead.salesforce.com/projects/workshop-lightning-programmatic/steps/programmatic-step-4)
 * [Trailhead: Build Reusable Lightning Components](https://trailhead.salesforce.com/projects/build-reusable-lightning-components)
 * [Trailhead: Create a Lightning Component to Display the Weather](https://trailhead.salesforce.com/en/projects/incorporate-ibm-weather-company-data/steps/lightning-component-display-weather)
