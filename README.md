@@ -2,7 +2,7 @@
 
 This repo contains the source code for a Lightning component used for the Denver PD Contact Card demo. This source code is for demo purposes only and is covered by the following copyright disclaimer.
 
-**Copyright 2016, Sales Engineering, Salesforce.com Inc.
+** Copyright 2016, Sales Engineering, Salesforce.com Inc.
 <br/>All rights reserved.
 <br/>
 <br/>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,7 +19,7 @@ This repo contains the source code for a Lightning component used for the Denver
 <br/>SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 <br/>CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 <br/>OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-<br/>OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.**
+<br/>OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. **
 
 #### This component shows the ability to:
 * Provide simple tab-based form that can be used from mobile devices to collect contact details (i.e. reason for contact, date/time, location, person details, actions taken, notes, etc...). See example screenshots below.
