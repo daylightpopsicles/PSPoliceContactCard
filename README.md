@@ -8,7 +8,7 @@ This repo contains the source code for a Lightning component used for the Denver
 <br/>Redistribution and use in source and binary forms, with or without modification, 
 <br/>are permitted provided that the following conditions are met:
 <br/>
-<br/>- Recipient acknowledges this source code is for sample purposes only and my not 
+<br/>- Recipient acknowledges this source code is for sample purposes only and may not 
 <br/>  be developed according to general coding best practices. 
 <br/>- Neither the name of the salesforce.com nor the names of its contributors may be
 <br/>  used to endorse or promote products derived from this software without specific prior 
