@@ -25,11 +25,14 @@
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
+        <members>Incident_Contact__c</members>
+        <members>Incident__c</members>
         <members>PSSearchFieldDef__c</members>
         <name>CustomObject</name>
     </types>
     <types>
         <members>ArcGis</members>
+        <members>CarQuery</members>
         <name>RemoteSiteSetting</name>
     </types>
     <version>39.0</version>

@@ -1,0 +1,856 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>PSPoliceContactCard</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>LightningComponent</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Address__c</fullName>
+        <externalId>false</externalId>
+        <label>Address</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Arrested_suspect_s__c</fullName>
+        <externalId>false</externalId>
+        <label>Arrested suspect(s)</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Basis_for_Full_Search_Narrative__c</fullName>
+        <externalId>false</externalId>
+        <label>Basis for Full Search Narrative</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Basis_for_Full_Search__c</fullName>
+        <externalId>false</externalId>
+        <label>Basis for Full Search</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Admitted to weapon</fullName>
+                    <default>false</default>
+                    <label>Admitted to weapon</label>
+                </value>
+                <value>
+                    <fullName>Felt/observed object resembling weapon</fullName>
+                    <default>false</default>
+                    <label>Felt/observed object resembling weapon</label>
+                </value>
+                <value>
+                    <fullName>Incident to arrest</fullName>
+                    <default>false</default>
+                    <label>Incident to arrest</label>
+                </value>
+                <value>
+                    <fullName>Consent</fullName>
+                    <default>false</default>
+                    <label>Consent</label>
+                </value>
+                <value>
+                    <fullName>Other (describe)</fullName>
+                    <default>false</default>
+                    <label>Other (describe)</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Basis_for_Pat_Down_Narrative__c</fullName>
+        <externalId>false</externalId>
+        <label>Basis for Pat Down Narrative</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Basis_for_Pat_Down__c</fullName>
+        <externalId>false</externalId>
+        <label>Basis for Pat Down</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Verbal threats of violence</fullName>
+                    <default>false</default>
+                    <label>Verbal threats of violence</label>
+                </value>
+                <value>
+                    <fullName>Knowledge of weapon/prior violence</fullName>
+                    <default>false</default>
+                    <label>Knowledge of weapon/prior violence</label>
+                </value>
+                <value>
+                    <fullName>Actions indicative of violence</fullName>
+                    <default>false</default>
+                    <label>Actions indicative of violence</label>
+                </value>
+                <value>
+                    <fullName>Violent crime suspected</fullName>
+                    <default>false</default>
+                    <label>Violent crime suspected</label>
+                </value>
+                <value>
+                    <fullName>Suspicious bulge</fullName>
+                    <default>false</default>
+                    <label>Suspicious bulge</label>
+                </value>
+                <value>
+                    <fullName>Search incident to arrest</fullName>
+                    <default>false</default>
+                    <label>Search incident to arrest</label>
+                </value>
+                <value>
+                    <fullName>Suspicion of weapon (describe)</fullName>
+                    <default>false</default>
+                    <label>Suspicion of weapon (describe)</label>
+                </value>
+                <value>
+                    <fullName>Other (describe)</fullName>
+                    <default>false</default>
+                    <label>Other (describe)</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Contact_Count__c</fullName>
+        <externalId>false</externalId>
+        <label>Contact Count</label>
+        <summaryForeignKey>Incident_Contact__c.Incident__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Contact_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Contact Type</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Driver</fullName>
+                    <default>false</default>
+                    <label>Driver</label>
+                </value>
+                <value>
+                    <fullName>Passenger</fullName>
+                    <default>false</default>
+                    <label>Passenger</label>
+                </value>
+                <value>
+                    <fullName>Pedestrian</fullName>
+                    <default>false</default>
+                    <label>Pedestrian</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>District__c</fullName>
+        <externalId>false</externalId>
+        <label>District</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>District 1</fullName>
+                    <default>false</default>
+                    <label>District 1</label>
+                </value>
+                <value>
+                    <fullName>District 2</fullName>
+                    <default>false</default>
+                    <label>District 2</label>
+                </value>
+                <value>
+                    <fullName>District 3</fullName>
+                    <default>false</default>
+                    <label>District 3</label>
+                </value>
+                <value>
+                    <fullName>District 4</fullName>
+                    <default>false</default>
+                    <label>District 4</label>
+                </value>
+                <value>
+                    <fullName>District 5</fullName>
+                    <default>false</default>
+                    <label>District 5</label>
+                </value>
+                <value>
+                    <fullName>District 6</fullName>
+                    <default>false</default>
+                    <label>District 6</label>
+                </value>
+                <value>
+                    <fullName>District 7</fullName>
+                    <default>false</default>
+                    <label>District 7</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Duration_of_Contact__c</fullName>
+        <externalId>false</externalId>
+        <label>Duration of Contact</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>&lt;5 Min</fullName>
+                    <default>false</default>
+                    <label>&lt;5 Min</label>
+                </value>
+                <value>
+                    <fullName>5-9 Min</fullName>
+                    <default>false</default>
+                    <label>5-9 Min</label>
+                </value>
+                <value>
+                    <fullName>10-19 Min</fullName>
+                    <default>false</default>
+                    <label>10-19 Min</label>
+                </value>
+                <value>
+                    <fullName>20-29 Min</fullName>
+                    <default>false</default>
+                    <label>20-29 Min</label>
+                </value>
+                <value>
+                    <fullName>30-39 Min</fullName>
+                    <default>false</default>
+                    <label>30-39 Min</label>
+                </value>
+                <value>
+                    <fullName>40-49 Min</fullName>
+                    <default>false</default>
+                    <label>40-49 Min</label>
+                </value>
+                <value>
+                    <fullName>50-59 Min</fullName>
+                    <default>false</default>
+                    <label>50-59 Min</label>
+                </value>
+                <value>
+                    <fullName>&gt;60 Min</fullName>
+                    <default>false</default>
+                    <label>&gt;60 Min</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Edit_Link__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(
+  IF(
+      CONTAINS($Api.Partner_Server_URL_260, &apos;visual&apos;), 
+      &apos;https://&apos;+
+      MID($Api.Partner_Server_URL_260, FIND( &apos;visual&apos;, $Api.Partner_Server_URL_260)-4,4)
+      +&apos;salesforce.com/&apos;,
+      LEFT($Api.Partner_Server_URL_260, FIND( &apos;/services&apos;, $Api.Partner_Server_URL_260))
+  ) + &apos;s/contact-card?id=&apos;+ CASESAFEID(Id) , 
+  &apos;Open Record&apos;,&apos;_self&apos;
+
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Edit Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Foot_Pursuit__c</fullName>
+        <externalId>false</externalId>
+        <label>Foot Pursuit</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Full_Search__c</fullName>
+        <externalId>false</externalId>
+        <label>Full Search</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Incident_Date_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Incident Date/Time</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Issued_Summons__c</fullName>
+        <externalId>false</externalId>
+        <label>Issued Summons</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Location__c</fullName>
+        <displayLocationInDecimal>true</displayLocationInDecimal>
+        <externalId>false</externalId>
+        <label>Location</label>
+        <required>false</required>
+        <scale>7</scale>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Location</type>
+    </fields>
+    <fields>
+        <fullName>Num_Officers_Involved__c</fullName>
+        <externalId>false</externalId>
+        <label># Officers Involved</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>&gt;5</fullName>
+                    <default>false</default>
+                    <label>&gt;5</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Num_of_Subjects__c</fullName>
+        <externalId>false</externalId>
+        <label># of Subjects</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>&gt;5</fullName>
+                    <default>false</default>
+                    <label>&gt;5</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Observation_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Observation Notes</label>
+        <length>2000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Officer_Badge_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Officer Badge Number</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Officer_in_Uniform__c</fullName>
+        <externalId>false</externalId>
+        <label>Officer in Uniform</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Pat_Down__c</fullName>
+        <externalId>false</externalId>
+        <label>Pat Down</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Reason_Narrative__c</fullName>
+        <externalId>false</externalId>
+        <label>Reason Narrative</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Reason</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Traffic Violation</fullName>
+                    <default>false</default>
+                    <label>Traffic Violation</label>
+                </value>
+                <value>
+                    <fullName>Equipment Violation</fullName>
+                    <default>false</default>
+                    <label>Equipment Violation</label>
+                </value>
+                <value>
+                    <fullName>Casing a victim or location</fullName>
+                    <default>false</default>
+                    <label>Casing a victim or location</label>
+                </value>
+                <value>
+                    <fullName>Actions indicative of a drug transaction</fullName>
+                    <default>false</default>
+                    <label>Actions indicative of a drug transaction</label>
+                </value>
+                <value>
+                    <fullName>Actions of engaging in a violent crime</fullName>
+                    <default>false</default>
+                    <label>Actions of engaging in a violent crime</label>
+                </value>
+                <value>
+                    <fullName>Fits description of a suspect</fullName>
+                    <default>false</default>
+                    <label>Fits description of a suspect</label>
+                </value>
+                <value>
+                    <fullName>Proximity to reported crime location</fullName>
+                    <default>false</default>
+                    <label>Proximity to reported crime location</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Siezed_Contraband__c</fullName>
+        <externalId>false</externalId>
+        <label>Seized Contraband</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Type_of_Contraband__c</fullName>
+        <externalId>false</externalId>
+        <label>Type of Contraband</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Narcotics</fullName>
+                    <default>false</default>
+                    <label>Narcotics</label>
+                </value>
+                <value>
+                    <fullName>Firearm</fullName>
+                    <default>false</default>
+                    <label>Firearm</label>
+                </value>
+                <value>
+                    <fullName>Other Weapon</fullName>
+                    <default>false</default>
+                    <label>Other Weapon</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Vehicle_Pursuit__c</fullName>
+        <externalId>false</externalId>
+        <label>Vehicle Pursuit</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Wave_Data__c</fullName>
+        <externalId>false</externalId>
+        <label>Wave Data</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Incident</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Reason__c</columns>
+        <columns>Contact_Count__c</columns>
+        <columns>District__c</columns>
+        <columns>Officer_Badge_Number__c</columns>
+        <columns>Vehicle_Pursuit__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Mobile</fullName>
+        <columns>NAME</columns>
+        <columns>Reason__c</columns>
+        <columns>Contact_Count__c</columns>
+        <columns>District__c</columns>
+        <columns>Officer_Badge_Number__c</columns>
+        <columns>Edit_Link__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>Mobile</label>
+    </listViews>
+    <nameField>
+        <displayFormat>ICD-{00000000}</displayFormat>
+        <label>Incident Number</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Incidents</pluralLabel>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Reason__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Contact_Count__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>District__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Officer_Badge_Number__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
+    <visibility>Public</visibility>
+</CustomObject>
